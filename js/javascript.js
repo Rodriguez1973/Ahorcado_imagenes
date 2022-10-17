@@ -2,32 +2,45 @@
  * Fecha: 10/10/2022
  */
 
+
 let pal_adivinar //Palabra a adivinar.
 let pal_aciertos //Palabra con los aciertos.
 let pal_fallos = '' //Palabra con los fallos.
 const MAX_ERRORES = 6 //Máximo número de errores.
 let errores = 0 //Contador de errores.
-let valido = true //Bandera que controla si la palabra a adivinar es válida.
 let jugando = false //Bandera que controla si se ha empezado una partida.
+let listaArchivos //Lista de archivos.
 
-/*Establece el cursor en el input_adivinar, al finalizar la carga en el navegador de la página web*/
-window.onload = function () {
-  input_adivinar.select()
-}
-
-/*Añade escuchador del evento de perdida del foco el <input id="input_adivinar">*/
-input_adivinar.addEventListener('blur', empiezaJuego, false)
 
 /*Añade escuchador del evento de keypress del <input id="input_letra">*/
 input_letra.addEventListener('keyup', comprobarLetra, false)
 
+
 /*Añade escuchador del evento click del <input id="input_reiniciar">*/
 input_reiniciar.addEventListener('click', reiniciarJuego, false)
+
 
 /*Captura el evento onclick en la etiqueta <p id="cerrar_navegador">*/
 cerrar_navegador.onclick = function () {
   window.close()
 }
+
+
+/*Captura el evento cuando se produce un cambio del <input id="input_archivos">*/
+input_archivos.addEventListener('change', seleccionImagenes, false)
+
+
+/*Captura el evento cuando se procuce click en el <input id="input_archivos"*/
+input_archivos.addEventListener('click', borrarSeleccion, false)
+
+
+/*Función que borra los archivos seleccionados*/
+function borrarSeleccion() {
+  input_archivos.value = ''
+  imagenes.hidden = true
+  contenedorImagenes.innerHTML = ''
+}
+
 
 /*Función de reinicio del juego. Inicializa las cadenas de texto y las propiedades de los elementos html*/
 function reiniciarJuego() {
@@ -36,13 +49,14 @@ function reiniciarJuego() {
   pal_aciertos = '' //Palabra con los aciertos.
   pal_fallos = '' //Palabra con los fallos.
   errores = 0 //Contador de errores.
+  notificaciones.innerHTML = ''
   input_reiniciar.hidden = true
+  input_archivos.hidden = false
+  input_archivos.value = ''
   input_aciertos.value = pal_aciertos
-  input_adivinar.value = pal_adivinar
+  contenedorImagenes.innerHTML = ''
   input_fallos.value = pal_fallos
-  input_letra.readOnly = false
-  input_adivinar.readOnly = false
-  input_adivinar.select()
+  input_letra.readOnly = true
   input_letra.value = ''
   ahorcado_0.hidden = false
   ahorcado_1.hidden = true
@@ -51,23 +65,26 @@ function reiniciarJuego() {
   ahorcado_4.hidden = true
   ahorcado_5.hidden = true
   ahorcado_6.hidden = true
-  if (valido) {
-    notificaciones.innerHTML = ''
-  }
 }
+
 
 /*Función que da comienzo a la ejecucion del juego*/
 function empiezaJuego(evento) {
   //No se ha iniciado un juego.
   if (!jugando) {
-    valido = true
+    //Oculta la selección de archivos.
+    input_archivos.hidden = true
+    contenedorImagenes.hidden = true
+    enJuego.hidden = false
+    input_letra.readOnly = false
+    input_letra.focus()
     notificaciones.innerHTML = ''
-    pal_adivinar = input_adivinar.value.trim().toUpperCase()
+    pal_adivinar = evento.target.title.trim().toUpperCase()
 
     //Comprueba si la palabra a adivinar tiene caracteres.
     if (pal_adivinar.length != 0) {
       //Impide la edición en el input_adivinar durante la partida
-      input_adivinar.readOnly = true
+
       //Iniciliza la palabra con los errores.
       pal_errores = ''
       //Reemplaza los caracteres de la expresión regular por guiones.
@@ -88,6 +105,7 @@ function empiezaJuego(evento) {
     }
   }
 }
+
 
 /*Comprueba la letra introducida está dentro de la cadena a adivinar y realiza las acciones oportunas*/
 function comprobarLetra() {
@@ -130,6 +148,7 @@ function comprobarLetra() {
         '<h2>Enhorabuena, ha averiguado la palabra oculta</h2>'
       input_letra.readOnly = true
       input_reiniciar.hidden = false
+      enJuego.hidden = true
     }
     //Comprueba si se ha alcanzado el número máximo de errores.
     if (errores === MAX_ERRORES) {
@@ -137,9 +156,11 @@ function comprobarLetra() {
       notificaciones.innerHTML = '<h2>No ha averiguado la palabra oculta</h2>'
       input_letra.readOnly = true
       input_reiniciar.hidden = false
+      enJuego.hidden = true
     }
   }
 }
+
 
 /*Función que reemplaza un caracter en un determinado indice de una cadena de caracteres*/
 String.prototype.reemplazarCaracter = function (index, caracter) {
@@ -147,6 +168,7 @@ String.prototype.reemplazarCaracter = function (index, caracter) {
   caracteres[index] = caracter
   return caracteres.join('')
 }
+
 
 /*Función que muestra las imagenes del ahorcado en función del número de errores*/
 function mostrarAhorcado(errores) {
@@ -182,6 +204,7 @@ function mostrarAhorcado(errores) {
   }
 }
 
+
 /*Valida si el caracter introducido es un caracter alfabético.*/
 function validarCaracterIntroducido(caracter) {
   if (
@@ -197,5 +220,48 @@ function validarCaracterIntroducido(caracter) {
     return true
   } else {
     return false
+  }
+}
+
+
+/*Función que selecciona los archivos de imagen y las muestra*/
+function seleccionImagenes(evento) {
+  let existenImagenes = false
+  
+  //Lista de archivos.
+  listaArchivos = evento.target.files //Lista de archivos.
+
+  //Bucle que recorre la lista de archivos obtenidos de la carpeta seleccionada.
+  for (let i = 0, archivo; (archivo = listaArchivos[i]); i++) {
+    // Solamente procesa archivos de imagen.
+    if (!archivo.type.match('image.*')) {
+      continue
+    }
+    existenImagenes = true
+    contenedorImagenes.hidden=false;
+    //Flujo de lectura.
+    let reader = new FileReader()
+
+    // Función que obtiene la información de cada archivo. Se ejecuta al cargar (load) cada uno de los archivos seleccionados.
+    reader.onload = (function (evt) {
+      return function (e) {
+        let cadena = escape(evt.name)
+        let posPunto = cadena.indexOf('.')
+        let nombreImagen = cadena.substring(0, posPunto)
+        let imagen = document.createElement('img')
+        imagen.src = e.target.result //Imagen en formato Base64.
+        imagen.alt = archivo.name
+        imagen.title = nombreImagen
+        imagen.onclick = empiezaJuego
+        document.getElementById('contenedorImagenes').insertBefore(imagen, null)
+      }
+    })(archivo);
+
+    //Lee el archivo de imagen como una URL de datos.
+    reader.readAsDataURL(archivo)
+  }
+  //Si existen imagenes hace visible el contenedor
+  if (existenImagenes) {
+    imagenes.hidden = false
   }
 }

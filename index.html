@@ -14,8 +14,6 @@
 </head>
 
 <body>
-  <input type="file" id="seleccionImagenes"  multiple>
-  <script src="./js/funciones.js"></script>
   <main id="principal">
     <!--Encabezado de la página web-->
     <header class="cabecera">
@@ -25,36 +23,43 @@
           <div>
             <h1 id="tit_principal">Juego del Ahorcado</h1>
           </div>
-          <div><img src="./images/gifs animados/Ahorcado.gif"  alt="Gif ahorcado"></div>
+          <div><img src="./images/gifs animados/Ahorcado.gif" alt="Gif ahorcado"></div>
         </div>
       </div>
       <p id="cerrar"><a id="cerrar_navegador">Cerrar Navegador</a></p>
     </header>
-    
+
     <!--Cuerpo de la página-->
     <article class="ahorcado">
       <div>
         <!--Palabra a adivinar-->
-        <div id="contenedorImagenes" hidden></div>
-        <input type="file" name="archivos" id="archivos" multiple> 
+        <div id="imagenes" hidden>
+          <div id="enJuego" hidden><h1>PARTIDA EN CURSO</h1></div>
+          <div id="contenedorImagenes"></div>
+        </div>
+        <div id="selectorFicheros">
+          <input type="file" name="input_archivos" id="input_archivos" multiple>
+        </div>
         <br>
-        <!--Letra a probar-->
-        <label for="input_letra">Letra a probar:</label>
-        <input type="text" name="input_letra" id="input_letra" value="" minlength="1" maxlength="1" readonly>
-        <br>
-        <!--Palabra donde se llevan los aciertos-->
-        <label for="input_aciertos">Aciertos:</label>
-        <input type="text" name="input_aciertos" id="input_aciertos" readonly value="">
-        <br>
-        <!--Cadena de caracteres con aquellos introducidos que no se encuentran en la palabra a adivinar-->
-        <label for="input_fallos">Letras falladas</label>
-        <input type="text" name="input_fallos" id="input_fallos" readonly value="">
-        <br>
-        <!--Contenedor donde se muestran las notificaciones al usuario-->
-        <h2>Notificaciones:</h2>
-        <div id="notificaciones"></div>
-        <!--Botón de reinicio del juego-->
-        <div id="reiniciar"><input id="input_reiniciar" type="button" value="Reiniciar Juego" hidden></div>
+        <div id="inputs">
+          <!--Letra a probar-->
+          <label for="input_letra">Letra a probar:</label>
+          <input type="text" name="input_letra" id="input_letra" value="" minlength="1" maxlength="1" readonly>
+          <br>
+          <!--Palabra donde se llevan los aciertos-->
+          <label for="input_aciertos">Aciertos:</label>
+          <input type="text" name="input_aciertos" id="input_aciertos" readonly value="">
+          <br>
+          <!--Cadena de caracteres con aquellos introducidos que no se encuentran en la palabra a adivinar-->
+          <label for="input_fallos">Letras falladas</label>
+          <input type="text" name="input_fallos" id="input_fallos" readonly value="">
+          <br>
+          <!--Contenedor donde se muestran las notificaciones al usuario-->
+          <h2>Notificaciones:</h2>
+          <div id="notificaciones"></div>
+          <!--Botón de reinicio del juego-->
+          <div id="reiniciar"><input id="input_reiniciar" type="button" value="Reiniciar Juego" hidden></div>
+        </div>
       </div>
     </article>
     <!--Sección lateral derecha donde se muestran las imagenes del ahorcado-->

@@ -67,7 +67,8 @@ main {
 }
 
 .ahorcado div {
-  padding: 40px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .ahorcado div input {
@@ -137,17 +138,50 @@ input {
   padding: 0px;
 }
 
-#contenedorImagenes{
-  margin:10px;
-  padding: 10px;
-  background-color: cadetblue;
-  width:auto;
-  height: auto;
-}
-
 img {
   width:120px;
-height: 120px;
-border:2px, solid, red ;
-margin-left:10px;
+  height:120px;
+  margin:10px;
+}
+
+#input_archivos {
+  margin: auto;
+  padding: 0;
+}
+
+#selectorFicheros{
+  display: flex;
+  align-items: center;
+  padding:0;
+  margin-top: 15px;
+}
+
+#inputs {
+  padding-left:40px;
+  width: auto;
+}
+
+#imagenes{
+  display: flex;
+  align-items: center;
+  margin:20px, auto, 20px, auto;
+  padding: auto;
+  background-color: rgb(125, 169, 247);
+  width:auto;
+}
+
+#contenedorImagenes {
+  width: auto;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+input[type="file"] {
+    color: transparent;
+    width:147px;
+}
+
+#enJuego{
+  color: crimson;
 }
