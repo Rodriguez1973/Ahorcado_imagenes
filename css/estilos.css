@@ -1,0 +1,153 @@
+/* Proyecto realizado por: José A. Rodríguez López-->
+ * Fecha: 10/10/2022
+ */
+
+main {
+  display: grid;
+  grid-template-areas:
+    'a a a a'
+    'b b b c'
+    'b b b c'
+    'd d d d';
+  grid-template-rows: auto auto auto auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.cabecera {
+  grid-area: a;
+  margin: 10px;
+}
+
+#contenedor {
+  background-color: #beb5ef;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+#titulo {
+  display: flex;
+  flex-direction: row;
+}
+
+.cabecera > div div {
+  background-color: #beb5ef;
+  padding-top: 15px;
+  padding-left: 75px;
+  padding-right: 75px;
+  padding-bottom: 15px;
+  margin: 0px;
+}
+
+#tit_principal {
+  background-color: #beb5ef;
+  text-decoration: underline;
+  text-align: center;
+  padding: 15px;
+  margin: 0px;
+  top: 50%;
+}
+
+#cerrar {
+  background: linear-gradient(to right, rgb(231, 237, 153), rgb(136, 244, 246));
+  color: blueviolet;
+  text-decoration: underline;
+  font-weight: bold;
+  padding: 15px;
+  margin: 0px;
+  text-align: left;
+}
+
+.ahorcado {
+  background: rgb(251, 187, 164);
+  grid-area: b;
+  margin: 10px 5px 10px 10px;
+  padding: 30px;
+}
+
+.ahorcado div {
+  padding: 40px;
+}
+
+.ahorcado div input {
+  margin: 20px;
+}
+
+aside {
+  grid-area: c;
+  background-color: rgb(245, 217, 217);
+  margin: 10px 10px 10px 10px;
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+aside div {
+  margin: 0px;
+  padding: 20px;
+}
+
+aside img {
+  padding: 30px;
+  background-color: white;
+}
+
+.pie {
+  grid-area: d;
+  margin-top: 20px;
+  background-color: white;
+  text-align: center;
+  font-size: 15px;
+  font-style: italic;
+  padding: 0px;
+  border-top: solid 1px black;
+}
+
+label,
+input,
+#cerrar_navegador {
+  font-size: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input {
+  margin-left: 0px;
+  width: 400px;
+}
+
+#input_letra {
+  text-align: center;
+  width: 20px;
+}
+
+#notificaciones {
+  text-align: center;
+  font-size: 20px;
+  color: red;
+  padding: 0px;
+}
+
+#reiniciar {
+  display: flex;
+  justify-content: center;
+  padding: 0px;
+}
+
+#contenedorImagenes{
+  margin:10px;
+  padding: 10px;
+  background-color: cadetblue;
+  width:auto;
+  height: auto;
+}
+
+img {
+  width:120px;
+height: 120px;
+border:2px, solid, red ;
+margin-left:10px;
+}

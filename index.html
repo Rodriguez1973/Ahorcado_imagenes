@@ -1,0 +1,80 @@
+<!--Proyecto realizado por: José A. Rodríguez López-->
+<!--Fecha: 05/10/2022-->
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juego del ahorcado</title>
+  <link rel="stylesheet" type="text/css" href="./css/estilos.css">
+  <script src="./js/javascript.js" defer></script>
+</head>
+
+<body>
+  <input type="file" id="seleccionImagenes"  multiple>
+  <script src="./js/funciones.js"></script>
+  <main id="principal">
+    <!--Encabezado de la página web-->
+    <header class="cabecera">
+      <div id="contenedor">
+        <div id="titulo">
+          <div><img src="./images/gif animado/Ahorcado.gif" alt="Gif ahorcado"></div>
+          <div>
+            <h1 id="tit_principal">Juego del Ahorcado</h1>
+          </div>
+          <div><img src="./images/gif animado/Ahorcado.gif"  alt="Gif ahorcado"></div>
+        </div>
+      </div>
+      <p id="cerrar"><a id="cerrar_navegador">Cerrar Navegador</a></p>
+    </header>
+    
+    <!--Cuerpo de la página-->
+    <article class="ahorcado">
+      <div>
+        <!--Palabra a adivinar-->
+        <div id="contenedorImagenes" hidden></div>
+        <input type="file" name="archivos" id="archivos" multiple> 
+        <br>
+        <!--Letra a probar-->
+        <label for="input_letra">Letra a probar:</label>
+        <input type="text" name="input_letra" id="input_letra" value="" minlength="1" maxlength="1" readonly>
+        <br>
+        <!--Palabra donde se llevan los aciertos-->
+        <label for="input_aciertos">Aciertos:</label>
+        <input type="text" name="input_aciertos" id="input_aciertos" readonly value="">
+        <br>
+        <!--Cadena de caracteres con aquellos introducidos que no se encuentran en la palabra a adivinar-->
+        <label for="input_fallos">Letras falladas</label>
+        <input type="text" name="input_fallos" id="input_fallos" readonly value="">
+        <br>
+        <!--Contenedor donde se muestran las notificaciones al usuario-->
+        <h2>Notificaciones:</h2>
+        <div id="notificaciones"></div>
+        <!--Botón de reinicio del juego-->
+        <div id="reiniciar"><input id="input_reiniciar" type="button" value="Reiniciar Juego" hidden></div>
+      </div>
+    </article>
+    <!--Sección lateral derecha donde se muestran las imagenes del ahorcado-->
+    <aside class="imagen_ahorcado">
+      <div>
+        <img id="ahorcado_0" src="./images/ahorcado/Ahorcado_0.png" alt="Imagen ahorcado 0">
+        <img id="ahorcado_1" src="./images/ahorcado/Ahorcado_1.png" alt="Imagen ahorcado 1" hidden>
+        <img id="ahorcado_2" src="./images/ahorcado/Ahorcado_2.png" alt="Imagen ahorcado 2" hidden>
+        <img id="ahorcado_3" src="./images/ahorcado/Ahorcado_3.png" alt="Imagen ahorcado 3" hidden>
+        <img id="ahorcado_4" src="./images/ahorcado/Ahorcado_4.png" alt="Imagen ahorcado 4" hidden>
+        <img id="ahorcado_5" src="./images/ahorcado/Ahorcado_5.png" alt="Imagen ahorcado 5" hidden>
+        <img id="ahorcado_6" src="./images/ahorcado/Ahorcado_6.png" alt="Imagen ahorcado 6" hidden>
+      </div>
+    </aside>
+    <!--Pie de página-->
+    <footer class="pie">
+      <p>Desarrollo de aplicaciones Web(DAW) &copy; CIFP Santa Catalina</p>
+      <p>Realizado por: José A. Rodríguez López.</p>
+    </footer>
+  </main>
+</body>
+
+</html>
